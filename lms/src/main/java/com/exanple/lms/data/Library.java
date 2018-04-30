@@ -1,5 +1,6 @@
 package com.exanple.lms.data;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -9,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-
 @Entity
 public class Library {
 	
@@ -18,10 +17,13 @@ public class Library {
     private String name;
     private Set<Book> books;
     
-    public Library(){}
+    public Library(){
+    	this.setBooks(null);
+    }
     
     public Library(String name) {
         this.name = name;
+        this.setBooks(null);
     }
     
     @Id
@@ -48,20 +50,30 @@ public class Library {
     }
     
     public void setBooks(Set<Book> books) {
-        this.books = books;
+    	if(books == null) {
+    		this.books = new HashSet<Book>();
+    	} else {
+    		 this.books = books;
+    	}
+    }
+    
+    public void addBook(Book book) {
+    	if(book == null) {
+    		return;
+    	}
+    	this.books.add(book);
     }
 
     @Override
     public String toString() {
         String result = String.format(
-                "Category[id=%d, name='%s']%n",
+                "Library[id=%d, name='%s']%n",
                 id, name);
-        if (books != null || !books.isEmpty()) {
+        if (books != null && !books.isEmpty()) {
             for(Book book : books) {
                 result += book.toString();
             }
         }
-
         return result;
     }
     

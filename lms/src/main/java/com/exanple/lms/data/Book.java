@@ -43,7 +43,7 @@ public class Book {
     	return this.id;
     }
     
-    public void setTitile(String title) {
+    public void setTitle(String title) {
     	this.title = title;
     }
     
