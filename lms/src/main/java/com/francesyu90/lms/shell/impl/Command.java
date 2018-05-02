@@ -6,7 +6,6 @@ import org.springframework.shell.standard.ShellMethod;
 import org.springframework.stereotype.Controller;
 
 import com.francesyu90.lms.service.IGeneralService;
-import com.francesyu90.lms.service.ILibraryService;
 import com.francesyu90.lms.shell.ICommand;
 
 @ShellComponent
@@ -19,7 +18,7 @@ public class Command implements ICommand {
 	@Override
 	@ShellMethod(value = "displays all libraries")
 	public void list() {
-		System.out.println("list: not yet implemented");
+		this.generalService.list();
 	}
 
 	@Override

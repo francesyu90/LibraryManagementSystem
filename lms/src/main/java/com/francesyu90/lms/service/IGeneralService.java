@@ -6,5 +6,7 @@ import org.springframework.stereotype.Service;
 public interface IGeneralService {
 	
 	public void create();
+	
+	public void list();
 
 }

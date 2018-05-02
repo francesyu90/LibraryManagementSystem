@@ -1,6 +1,7 @@
 package com.francesyu90.lms.service.impl;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -76,6 +77,13 @@ public class GeneralService implements IGeneralService {
 		}
 		
 		return books;
+	}
+
+	@Override
+	public void list() {
+		List<Library> libraries = this.libraryService.getAllLibraries();
+		String jsonLibraries = this.lmsUtility.getLibrariesJSONString(libraries);
+		System.out.printf("Library (JSON): %s\n", jsonLibraries);
 	}
 
 }

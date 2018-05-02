@@ -1,5 +1,7 @@
 package com.francesyu90.lms.util;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.francesyu90.lms.domain.Library;
@@ -13,6 +15,11 @@ public class LmsUtility {
 		Gson gsonBuilder = new GsonBuilder().create();
 		String jsonFromPojo = gsonBuilder.toJson(library);
 		return jsonFromPojo;
+	}
+	
+	public String getLibrariesJSONString(List<Library> libraries) {
+		Gson gsonBuilder = new GsonBuilder().create();
+		return gsonBuilder.toJson(libraries);
 	}
 
 }
