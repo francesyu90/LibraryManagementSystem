@@ -12,6 +12,7 @@ import com.francesyu90.lms.domain.Library;
 import com.francesyu90.lms.repository.ILibraryRepository;
 import com.francesyu90.lms.service.IBookService;
 import com.francesyu90.lms.service.ILibraryService;
+import com.francesyu90.lms.util.LmsUtility;
 
 @Service
 public class LibraryService implements ILibraryService {
@@ -22,6 +23,9 @@ public class LibraryService implements ILibraryService {
 	@Autowired
 	private IBookService bookService;
 	
+	@Autowired
+	private LmsUtility lmsUtility;
+	
 	private Scanner scanner;
 	
 	public LibraryService() {
@@ -31,18 +35,21 @@ public class LibraryService implements ILibraryService {
 	@Override
 	public void createLibrary() {
 		
-		System.out.print("Please enter the name for the new library: ");
-		String libraryName = this.scanner.next();
+		System.out.println("Please enter the name for the new library: ");
+		String libraryName = this.scanner.nextLine();
 		
 		Set<Book> newBooks = this.getBooksFromUsrInput();
-		System.out.println(newBooks);
 		
 		this.bookService.saveBooks(newBooks);
 		Library newLibrary = new Library(libraryName, newBooks);
+		
 		Library library = this.libRepo.save(newLibrary);
 		if(library != null) {
 			System.out.println("Saved successfully!");
 		}
+		
+		String jsonLibrary = this.lmsUtility.getLibraryJSONString(newLibrary);
+		System.out.printf("Library (JSON): %s\n", jsonLibrary);
 		
 	}
 	
@@ -56,15 +63,15 @@ public class LibraryService implements ILibraryService {
 		while(!next) {
 			
 			System.out.println("Adding a new book... ");
-			System.out.print("Please enter the title of the book: ");
-			String title = this.scanner.next();
-			System.out.print("Please enter the author of the book: ");
-			String author = this.scanner.next();
+			System.out.println("Please enter the title of the book: ");
+			String title = this.scanner.nextLine();
+			System.out.println("Please enter the author of the book: ");
+			String author = this.scanner.nextLine();
 			book = new Book(title, author);
 			books.add(book);
 			
-			System.out.print("Would you like to add more books? ['y' or 'n' only]");
-			String res = this.scanner.next();
+			System.out.println("Would you like to add more books? ['y' or 'n' only]");
+			String res = this.scanner.nextLine();
 			
 			boolean isValidRes = (res.equals("y") || res.equals("n"))? true : false;
 			next = (isValidRes && res.equals("y"))? false : true;
