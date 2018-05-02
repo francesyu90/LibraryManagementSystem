@@ -12,5 +12,7 @@ public interface ILibraryService {
 	public Library saveLibrary(Library library);
 	
 	public List<Library> getAllLibraries();
+	
+	public void removeLibrary(long libraryId);
 
 }

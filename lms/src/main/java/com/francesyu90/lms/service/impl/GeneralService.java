@@ -93,4 +93,11 @@ public class GeneralService implements IGeneralService {
 		
 	}
 
+	@Override
+	public void delete() {
+		System.out.println("Please enter the id of the library you want to delete: ");
+		long res = this.scanner.nextLong();
+		this.libraryService.removeLibrary(res);
+	}
+
 }

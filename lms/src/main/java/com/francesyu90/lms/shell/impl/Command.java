@@ -30,7 +30,7 @@ public class Command implements ICommand {
 	@Override
 	@ShellMethod(value = "deletes a library")
 	public void delete() {
-		System.out.println("delete: not yet implemented");
+		this.generalService.delete();
 	}
 
 }

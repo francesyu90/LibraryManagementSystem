@@ -8,5 +8,7 @@ public interface IGeneralService {
 	public void create();
 	
 	public void list();
+	
+	public void delete();
 
 }

@@ -20,10 +20,7 @@ public class Book {
     private String author;
     
     @ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn (
-			name="library_id", 
-			nullable = false)
-    @JsonIgnore
+	@JoinColumn (name="library_id", nullable = false)
     private Library library;
 
     protected Book() {}

@@ -32,5 +32,10 @@ public class LibraryService implements ILibraryService {
 	public List<Library> getAllLibraries() {
 		return (List<Library>) this.libRepo.findAll();
 	}
+
+	@Override
+	public void removeLibrary(long libraryId) {
+		this.libRepo.deleteById(libraryId);
+	}
 	
 }
