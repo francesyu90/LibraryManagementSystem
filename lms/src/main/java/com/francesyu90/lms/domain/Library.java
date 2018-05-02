@@ -1,12 +1,10 @@
 package com.francesyu90.lms.domain;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,8 +12,11 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Library {
-	
-	private int id;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+    
     private String name;
     
     @OneToMany(mappedBy = "library")
@@ -35,13 +36,11 @@ public class Library {
     	this.setBooks(books);
     }
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public int getId() {
+    public long getId() {
         return id;
     }
     
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

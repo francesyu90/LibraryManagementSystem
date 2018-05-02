@@ -15,5 +15,5 @@ public interface IBookRepository extends JpaRepository<Book, Long> {
     
     List<Book> findByLibrary(Library library);
     
-    List<Book> findByLibraryId(Long libraryId);
+    List<Book> findBooksByLibraryId(long libraryId);
 }

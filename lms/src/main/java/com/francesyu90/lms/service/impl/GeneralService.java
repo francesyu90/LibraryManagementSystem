@@ -1,10 +1,9 @@
 package com.francesyu90.lms.service.impl;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -83,7 +82,13 @@ public class GeneralService implements IGeneralService {
 	public void list() {
 		
 		List<Library> libraries = this.libraryService.getAllLibraries();
-		String jsonLibraries = this.lmsUtility.getLibrariesJSONString(libraries);
+		List<Library> updatedLibraries = libraries.stream().map(library -> {
+			List<Book> books = this.bookService.getBooksByLibrary(library);
+			library.setBooks(books);
+			return library;
+		}).collect(Collectors.toList());
+		
+		String jsonLibraries = this.lmsUtility.getLibrariesJSONString(updatedLibraries);
 		System.out.printf("Library (JSON): %s\n", jsonLibraries);
 		
 	}

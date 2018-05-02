@@ -1,11 +1,11 @@
 package com.francesyu90.lms.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.francesyu90.lms.domain.Book;
 import com.francesyu90.lms.domain.Library;
 import com.francesyu90.lms.repository.ILibraryRepository;
 import com.francesyu90.lms.service.ILibraryService;
@@ -19,9 +19,10 @@ public class LibraryService implements ILibraryService {
 	@Override
 	public Library saveLibrary(Library library) {
 		
-		Library savedLibrary = this.libRepo.save(library);
-		if(savedLibrary != null) {
-			return savedLibrary;
+		this.libRepo.saveAndFlush(library);
+		Optional<Library> optLibrary = this.libRepo.findById(library.getId());
+		if(optLibrary.isPresent()) {
+			return optLibrary.get();
 		}
 		return null;
 		

@@ -2,13 +2,12 @@ package com.francesyu90.lms.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.francesyu90.lms.domain.Book;
+import com.francesyu90.lms.domain.Library;
 import com.francesyu90.lms.repository.IBookRepository;
 import com.francesyu90.lms.service.IBookService;
 
@@ -32,6 +31,11 @@ public class BookService implements IBookService {
 		if(savedBooks != null && !savedBooks.isEmpty()) {
 			System.out.println("Saved successfully");
 		}
+	}
+
+	@Override
+	public List<Book> getBooksByLibrary(Library library) {
+		return this.bookRepo.findBooksByLibraryId(library.getId());
 	}
 	
 	

@@ -1,6 +1,5 @@
 package com.francesyu90.lms.domain;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,7 +15,7 @@ public class Book {
 
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+    private long id;
     private String title;
     private String author;
     
@@ -24,6 +23,7 @@ public class Book {
 	@JoinColumn (
 			name="library_id", 
 			nullable = false)
+    @JsonIgnore
     private Library library;
 
     protected Book() {}
@@ -39,7 +39,7 @@ public class Book {
     	this.library = library;
     }
     
-    public Long getId() {
+    public long getId() {
 		return id;
 	}
 
