@@ -5,6 +5,7 @@ import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.stereotype.Controller;
 
+import com.francesyu90.lms.service.IGeneralService;
 import com.francesyu90.lms.service.ILibraryService;
 import com.francesyu90.lms.shell.ICommand;
 
@@ -13,7 +14,7 @@ import com.francesyu90.lms.shell.ICommand;
 public class Command implements ICommand {
 	
 	@Autowired
-	public ILibraryService libraryService;
+	public IGeneralService generalService;
 
 	@Override
 	@ShellMethod(value = "displays all libraries")
@@ -24,7 +25,7 @@ public class Command implements ICommand {
 	@Override
 	@ShellMethod(value = "creates a library")
 	public void create() {
-		this.libraryService.createLibrary();
+		this.generalService.create();
 	}
 
 	@Override
