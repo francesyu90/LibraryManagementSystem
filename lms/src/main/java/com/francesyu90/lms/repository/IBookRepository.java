@@ -9,9 +9,9 @@ import com.francesyu90.lms.domain.Library;
 
 public interface IBookRepository extends JpaRepository<Book, Long> {
 
-    List<Book> findByTitle(String title);
+    Book findByTitle(String title);
     
-    List<Book> findByAuthor(String author);
+    Book findByAuthor(String author);
     
     List<Book> findByLibrary(Library library);
     
