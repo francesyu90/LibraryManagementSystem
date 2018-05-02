@@ -8,8 +8,9 @@ import com.francesyu90.lms.domain.Library;
 
 @Service
 public interface ILibraryService {
-
-	public void saveLibrary(Library library);
+	
+	public Library saveLibrary(Library library);
 	
 	public List<Library> getAllLibraries();
+
 }

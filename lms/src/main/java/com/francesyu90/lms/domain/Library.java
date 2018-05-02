@@ -1,8 +1,11 @@
 package com.francesyu90.lms.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +19,7 @@ public class Library {
     private String name;
     
     @OneToMany(mappedBy = "library")
-    private Set<Book> books;
+    private List<Book> books;
     
     public Library(){
     	this.setBooks(null);
@@ -27,7 +30,7 @@ public class Library {
         this.setBooks(null);
     }
     
-    public Library(String name, Set<Book> books) {
+    public Library(String name, List<Book> books) {
     	this.name = name;
     	this.setBooks(books);
     }
@@ -50,9 +53,9 @@ public class Library {
         this.name = name;
     }
     
-    public void setBooks(Set<Book> books) {
+    public void setBooks(List<Book> books) {
     	if(books == null) {
-    		this.books = new HashSet<Book>();
+    		this.books = new ArrayList<Book>();
     	} else {
     		 this.books = books;
     	}

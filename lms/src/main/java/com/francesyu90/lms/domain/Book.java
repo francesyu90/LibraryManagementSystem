@@ -1,11 +1,15 @@
 package com.francesyu90.lms.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import net.minidev.json.annotate.JsonIgnore;
 
 @Entity
 public class Book {
@@ -16,8 +20,10 @@ public class Book {
     private String title;
     private String author;
     
-    @ManyToOne
-	@JoinColumn (name="library_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn (
+			name="library_id", 
+			nullable = false)
     private Library library;
 
     protected Book() {}
@@ -25,6 +31,12 @@ public class Book {
     public Book(String title, String author) {
         this.title = title;
         this.author = author;
+    }
+    
+    public Book(String title, String author, Library library) {
+    	this.title = title;
+    	this.author = author;
+    	this.library = library;
     }
     
     public Long getId() {

@@ -1,6 +1,7 @@
 package com.francesyu90.lms.service.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -26,7 +27,7 @@ public class BookService implements IBookService {
 	}
 	
 	@Override
-	public void saveBooks(Set<Book> books) {
+	public void saveBooks(List<Book> books) {
 		ArrayList<Book> savedBooks = (ArrayList<Book>) this.bookRepo.saveAll(books);
 		if(savedBooks != null && !savedBooks.isEmpty()) {
 			System.out.println("Saved successfully");

@@ -1,5 +1,6 @@
 package com.francesyu90.lms.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
@@ -39,21 +40,20 @@ public class GeneralService implements IGeneralService {
 		System.out.println("Please enter the name for the new library: ");
 		String libraryName = this.scanner.nextLine();
 		
-		Set<Book> newBooks = this.getBooksFromUsrInput();
+		Library newLibrary = new Library(libraryName);
+		Library savedLibrary = this.libraryService.saveLibrary(newLibrary);
 		
+		List<Book> newBooks = this.getBooksFromUsrInput(savedLibrary);
 		this.bookService.saveBooks(newBooks);
-		Library newLibrary = new Library(libraryName, newBooks);
-		
-		this.libraryService.saveLibrary(newLibrary);
 		
 		String jsonLibrary = this.lmsUtility.getLibraryJSONString(newLibrary);
 		System.out.printf("Library (JSON): %s\n", jsonLibrary);
 		
 	}
 	
-	private Set<Book> getBooksFromUsrInput() {
+	private List<Book> getBooksFromUsrInput(Library library) {
 		
-		Set<Book> books = new HashSet<>();
+		List<Book> books = new ArrayList<>();
 		
 		Book book;
 		boolean next = false;
@@ -65,7 +65,7 @@ public class GeneralService implements IGeneralService {
 			String title = this.scanner.nextLine();
 			System.out.println("Please enter the author of the book: ");
 			String author = this.scanner.nextLine();
-			book = new Book(title, author);
+			book = new Book(title, author, library);
 			books.add(book);
 			
 			System.out.println("Would you like to add more books? ['y' or 'n' only]");
@@ -81,9 +81,11 @@ public class GeneralService implements IGeneralService {
 
 	@Override
 	public void list() {
+		
 		List<Library> libraries = this.libraryService.getAllLibraries();
 		String jsonLibraries = this.lmsUtility.getLibrariesJSONString(libraries);
 		System.out.printf("Library (JSON): %s\n", jsonLibraries);
+		
 	}
 
 }

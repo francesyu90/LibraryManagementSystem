@@ -1,5 +1,6 @@
 package com.francesyu90.lms.service;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
@@ -11,6 +12,6 @@ public interface IBookService {
 	
 	public void saveBook(Book book);
 	
-	public void saveBooks(Set<Book> books);
+	public void saveBooks(List<Book> books);
 
 }
