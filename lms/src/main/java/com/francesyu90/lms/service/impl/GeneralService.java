@@ -45,7 +45,7 @@ public class GeneralService implements IGeneralService {
 		List<Book> newBooks = this.getBooksFromUsrInput(savedLibrary);
 		this.bookService.saveBooks(newBooks);
 		
-		String jsonLibrary = this.lmsUtility.getLibraryJSONString(newLibrary);
+		String jsonLibrary = this.lmsUtility.getJSONString(newLibrary);
 		System.out.printf("Library (JSON): %s\n", jsonLibrary);
 		
 	}
@@ -88,7 +88,7 @@ public class GeneralService implements IGeneralService {
 			return library;
 		}).collect(Collectors.toList());
 		
-		String jsonLibraries = this.lmsUtility.getLibrariesJSONString(updatedLibraries);
+		String jsonLibraries = this.lmsUtility.getJSONString(updatedLibraries);
 		System.out.printf("Library (JSON): %s\n", jsonLibraries);
 		
 	}
