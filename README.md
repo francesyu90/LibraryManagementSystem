@@ -26,6 +26,13 @@ As the user, you are able to:
 
 ```
 
+### Running the application
+
+Here are a list of available shell commands
+* list: List all libraries 
+* create: Add a new library
+* delete: Delete a library
+
 ## Running the tests
 
 ```
