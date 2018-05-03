@@ -1,8 +1,7 @@
 # LibraryManagementSystem
 
-This application, based on user input, will output data related to libraries. All of the logic of the 
-application is contained within the Main.java file. 
- 
+This application, based on user input, will output data related to libraries.
+
 As the user, you are able to: 
 * List all libraries 
 * Add a new library 
@@ -28,7 +27,7 @@ As the user, you are able to:
 
 ### Running the application
 
-Here are a list of available shell commands
+Here is a list of available shell commands
 * list: List all libraries 
 * create: Add a new library
 * delete: Delete a library
