@@ -18,19 +18,15 @@ public class BookService implements IBookService {
 	private IBookRepository bookRepo;
 
 	@Override
-	public void saveBook(Book book) {
+	public boolean saveBook(Book book) {
 		Book savedBook = this.bookRepo.save(book);
-		if(savedBook != null) {
-			System.out.println("Saved successfully");
-		}
+		return (savedBook != null)? true : false;
 	}
 	
 	@Override
-	public void saveBooks(List<Book> books) {
+	public boolean saveBooks(List<Book> books) {
 		ArrayList<Book> savedBooks = (ArrayList<Book>) this.bookRepo.saveAll(books);
-		if(savedBooks != null && !savedBooks.isEmpty()) {
-			System.out.println("Saved successfully");
-		}
+		return (savedBooks != null && !savedBooks.isEmpty()) ? true : false;
 	}
 
 	@Override

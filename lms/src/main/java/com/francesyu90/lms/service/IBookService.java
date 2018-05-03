@@ -10,9 +10,9 @@ import com.francesyu90.lms.domain.Library;
 @Service
 public interface IBookService {
 	
-	public void saveBook(Book book);
+	public boolean saveBook(Book book);
 	
-	public void saveBooks(List<Book> books);
+	public boolean saveBooks(List<Book> books);
 	
 	public List<Book> getBooksByLibrary(Library library);
 
